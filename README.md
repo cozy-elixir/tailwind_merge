@@ -39,6 +39,11 @@ end
 
 For more information, see the [documentation](https://hexdocs.pm/tailwind_merge).
 
+## Similar projects
+
+- [bratsche/twix](https://github.com/bratsche/twix)
+- [zachdaniel/tails](https://github.com/zachdaniel/tails)
+
 ## License
 
 [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0) / [MIT](./License)
