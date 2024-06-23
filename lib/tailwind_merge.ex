@@ -1,13 +1,25 @@
-defmodule Twix do
-  alias Twix.DefaultConfig
-  alias Twix.Mapping
+defmodule TailwindMerge do
+  alias TailwindMerge.DefaultConfig
+  alias TailwindMerge.Mapping
 
-  def tw(classes) when is_list(classes) do
+  @doc """
+  Merges Tailwind CSS classes.
+
+  ## The mechanism
+
+  When merge two clasess, this function will first get the group of the two
+  classes. If they are in the same group, the last one will be retained, the
+  previous one will be dropped. It will also consider the variants (like `hover`)
+  and, once again, the last one will be retained, the previous one will be
+  dropped.
+
+  """
+  def merge(classes) when is_list(classes) do
     Enum.join(classes, " ")
-    |> tw()
+    |> merge()
   end
 
-  def tw(classes) when is_binary(classes) do
+  def merge(classes) when is_binary(classes) do
     classes
     |> String.trim()
     |> split_classes()
@@ -21,8 +33,6 @@ defmodule Twix do
     end)
     |> Enum.join(" ")
   end
-
-  # -- private functions
 
   defp split_classes(classes) when is_binary(classes) do
     Regex.split(~r/\s+/, classes)

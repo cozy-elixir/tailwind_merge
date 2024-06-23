@@ -1,7 +1,7 @@
-defmodule Twix.Mapping do
+defmodule TailwindMerge.Mapping do
   defstruct [:base_class, :mods, :group, :important]
 
-  @before_compile Twix.Generator
+  @before_compile TailwindMerge.Generator
 
   def new(base_class, mods, group, important) do
     %__MODULE__{base_class: base_class, mods: mods, group: group, important: important}

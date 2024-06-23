@@ -1,4 +1,4 @@
-defmodule Twix.Validate do
+defmodule TailwindMerge.Validate do
   @arbitrary_regex ~r/^\[(.+)\]$/
 
   def is_opacity?(val) do

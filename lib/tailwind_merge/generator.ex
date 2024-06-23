@@ -1,5 +1,5 @@
-defmodule Twix.Generator do
-  alias Twix.DefaultConfig
+defmodule TailwindMerge.Generator do
+  alias TailwindMerge.DefaultConfig
 
   def split_class(class) do
     Regex.split(~r/-(?![^[]*?\])/, class)
@@ -192,7 +192,7 @@ defmodule Twix.Generator do
 
         defp lookup_group(class) do
           class
-          |> Twix.Generator.split_class()
+          |> TailwindMerge.Generator.split_class()
           |> get_group_for_class_list(class)
         end
       end

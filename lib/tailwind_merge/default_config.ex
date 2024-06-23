@@ -1,16 +1,18 @@
-defmodule Twix.DefaultConfig do
-  alias Twix.ConfigUtils
+defmodule TailwindMerge.DefaultConfig do
+  alias TailwindMerge.ConfigUtils
 
   def class_groups() do
     [
       # https://tailwindcss.com/docs/aspect-ratio
-      aspect: %{aspect: ["auto", "square", "video", {Twix.Validate, :is_arbitrary_value}]},
+      aspect: %{
+        aspect: ["auto", "square", "video", {TailwindMerge.Validate, :is_arbitrary_value}]
+      },
 
       # https://tailwindcss.com/docs/container
       container: ["container"],
 
       # https://tailwindcss.com/docs/columns
-      columns: %{columns: [{Twix.Validate, :is_tshirt_value}]},
+      columns: %{columns: [{TailwindMerge.Validate, :is_tshirt_value}]},
 
       # https://tailwindcss.com/docs/break-after
       "break-after": %{"break-after": ConfigUtils.breaks()},
@@ -66,7 +68,7 @@ defmodule Twix.DefaultConfig do
 
       # https://tailwindcss.com/docs/object-position
       "object-position": %{
-        object: ConfigUtils.positions() ++ [{Twix.Validate, :is_arbitrary_value}]
+        object: ConfigUtils.positions() ++ [{TailwindMerge.Validate, :is_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/overflow
@@ -91,34 +93,34 @@ defmodule Twix.DefaultConfig do
       position: ~w(static fixed absolute relative sticky),
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      inset: %{inset: ["auto", {Twix.Validate, :is_length}]},
+      inset: %{inset: ["auto", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      "inset-x": %{"inset-x": ["auto", {Twix.Validate, :is_length}]},
+      "inset-x": %{"inset-x": ["auto", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      "inset-y": %{"inset-y": ["auto", {Twix.Validate, :is_length}]},
+      "inset-y": %{"inset-y": ["auto", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      top: %{top: ["auto", {Twix.Validate, :is_length}]},
+      top: %{top: ["auto", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      right: %{right: ["auto", {Twix.Validate, :is_length}]},
+      right: %{right: ["auto", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      bottom: %{bottom: ["auto", {Twix.Validate, :is_length}]},
+      bottom: %{bottom: ["auto", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      left: %{left: ["auto", {Twix.Validate, :is_length}]},
+      left: %{left: ["auto", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/visibility
       visibility: ~w(visible invisible collapse),
 
       # https://tailwindcss.com/docs/z-index
-      z: %{z: [{Twix.Validate, :is_integer?}]},
+      z: %{z: [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/flex-basis
-      basis: %{basis: [{Twix.Validate, :is_length}]},
+      basis: %{basis: [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/flex-direction
       "flex-direction": %{flex: ~w(row row-reverse col col-reverse)},
@@ -127,7 +129,9 @@ defmodule Twix.DefaultConfig do
       "flex-wrap": %{flex: ~w(wrap wrap-reverse nowrap)},
 
       # https://tailwindcss.com/docs/flex
-      flex: %{flex: ["1", "auto", "initial", "none", {Twix.Validate, :is_arbitrary_value}]},
+      flex: %{
+        flex: ["1", "auto", "initial", "none", {TailwindMerge.Validate, :is_arbitrary_value}]
+      },
 
       # https://tailwindcss.com/docs/flex-grow
       grow: %{grow: ConfigUtils.zero_and_empty()},
@@ -136,53 +140,57 @@ defmodule Twix.DefaultConfig do
       shrink: %{shrink: ConfigUtils.zero_and_empty()},
 
       # https://tailwindcss.com/docs/order
-      order: %{order: ["first", "last", "none", {Twix.Validate, :is_integer?}]},
+      order: %{order: ["first", "last", "none", {TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/grid-template-columns
-      "grid-cols": %{"grid-cols": ["none", {Twix.Validate, :is_integer_or_arbitrary_value}]},
+      "grid-cols": %{
+        "grid-cols": ["none", {TailwindMerge.Validate, :is_integer_or_arbitrary_value}]
+      },
 
       # https://tailwindcss.com/docs/grid-column
-      "col-start-end": %{col: ["auto", %{span: ["full", {Twix.Validate, :is_integer?}]}]},
+      "col-start-end": %{col: ["auto", %{span: ["full", {TailwindMerge.Validate, :is_integer?}]}]},
 
       # https://tailwindcss.com/docs/grid-column
-      "col-start": %{"col-start": ["auto", {Twix.Validate, :is_integer?}]},
+      "col-start": %{"col-start": ["auto", {TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/grid-column
-      "col-end": %{"col-end": ["auto", {Twix.Validate, :is_integer?}]},
+      "col-end": %{"col-end": ["auto", {TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/grid-template-rows
-      "grid-rows": %{"grid-rows": ["none", {Twix.Validate, :is_integer_or_arbitrary_value}]},
+      "grid-rows": %{
+        "grid-rows": ["none", {TailwindMerge.Validate, :is_integer_or_arbitrary_value}]
+      },
 
       # https://tailwindcss.com/docs/grid-row
-      "row-start-end": %{row: ["auto", %{span: ["full", {Twix.Validate, :is_integer?}]}]},
+      "row-start-end": %{row: ["auto", %{span: ["full", {TailwindMerge.Validate, :is_integer?}]}]},
 
       # https://tailwindcss.com/docs/grid-row
-      "row-start": %{"row-start": ["auto", {Twix.Validate, :is_integer?}]},
+      "row-start": %{"row-start": ["auto", {TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/grid-row
-      "row-end": %{"row-end": ["auto", {Twix.Validate, :is_integer?}]},
+      "row-end": %{"row-end": ["auto", {TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/grid-auto-flow
       "grid-flow": %{"grid-flow": ~w(row col dense row-dense col-dense)},
 
       # https://tailwindcss.com/docs/grid-auto-columns
       "auto-cols": %{
-        "auto-cols": ["auto", "min", "max", "fr", {Twix.Validate, :is_arbitrary_value}]
+        "auto-cols": ["auto", "min", "max", "fr", {TailwindMerge.Validate, :is_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/grid-auto-rows
       "auto-rows": %{
-        "auto-rows": ["auto", "min", "max", "fr", {Twix.Validate, :is_arbitrary_value}]
+        "auto-rows": ["auto", "min", "max", "fr", {TailwindMerge.Validate, :is_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/gap
-      gap: %{gap: ["px", {Twix.Validate, :is_length}]},
+      gap: %{gap: ["px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/gap
-      "gap-x": %{"gap-x": ["px", {Twix.Validate, :is_length}]},
+      "gap-x": %{"gap-x": ["px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/gap
-      "gap-y": %{"gap-y": ["px", {Twix.Validate, :is_length}]},
+      "gap-y": %{"gap-y": ["px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/justify-content
       "justify-content": %{justify: ConfigUtils.align()},
@@ -212,64 +220,64 @@ defmodule Twix.DefaultConfig do
       "place-self": %{"place-self": ~w(auto start end center stretch)},
 
       # https://tailwindcss.com/docs/padding
-      p: %{p: ["px", {Twix.Validate, :is_length}]},
+      p: %{p: ["px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/padding
-      px: %{px: ["px", {Twix.Validate, :is_length}]},
+      px: %{px: ["px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/padding
-      py: %{py: ["px", {Twix.Validate, :is_length}]},
+      py: %{py: ["px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/padding
-      pt: %{pt: ["px", {Twix.Validate, :is_length}]},
+      pt: %{pt: ["px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/padding
-      pr: %{pr: ["px", {Twix.Validate, :is_length}]},
+      pr: %{pr: ["px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/padding
-      pb: %{pb: ["px", {Twix.Validate, :is_length}]},
+      pb: %{pb: ["px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/padding
-      pl: %{pl: ["px", {Twix.Validate, :is_length}]},
+      pl: %{pl: ["px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      m: %{m: ["auto", "px", {Twix.Validate, :is_length}]},
+      m: %{m: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      mx: %{mx: ["auto", "px", {Twix.Validate, :is_length}]},
+      mx: %{mx: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      my: %{my: ["auto", "px", {Twix.Validate, :is_length}]},
+      my: %{my: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      mt: %{mt: ["auto", "px", {Twix.Validate, :is_length}]},
+      mt: %{mt: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      mr: %{mr: ["auto", "px", {Twix.Validate, :is_length}]},
+      mr: %{mr: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      mb: %{mb: ["auto", "px", {Twix.Validate, :is_length}]},
+      mb: %{mb: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      ml: %{ml: ["auto", "px", {Twix.Validate, :is_length}]},
+      ml: %{ml: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/space
-      "space-x": %{"space-x": [{Twix.Validate, :is_length}]},
+      "space-x": %{"space-x": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/space
       "space-x-reverse": ["space-x-reverse"],
 
       # https://tailwindcss.com/docs/space
-      "space-y": %{"space-y": [{Twix.Validate, :is_length}]},
+      "space-y": %{"space-y": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/space
       "space-y-reverse": ["space-y-reverse"],
 
       # https://tailwindcss.com/docs/width
-      w: %{w: ["auto", "min", "max", "fit", {Twix.Validate, :is_length}]},
+      w: %{w: ["auto", "min", "max", "fit", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/min-width
-      "min-w": %{"min-w": ["min", "max", "fit", {Twix.Validate, :is_length}]},
+      "min-w": %{"min-w": ["min", "max", "fit", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/max-width
       "max-w": %{
@@ -281,24 +289,28 @@ defmodule Twix.DefaultConfig do
           "max",
           "fit",
           "prose",
-          %{screen: [{Twix.Validate, :is_tshirt_value}]},
-          {Twix.Validate, :is_arbitrary_length},
-          {Twix.Validate, :is_tshirt_value}
+          %{screen: [{TailwindMerge.Validate, :is_tshirt_value}]},
+          {TailwindMerge.Validate, :is_arbitrary_length},
+          {TailwindMerge.Validate, :is_tshirt_value}
         ]
       },
 
       # https://tailwindcss.com/docs/height
-      h: %{h: ["auto", "min", "max", "fit", {Twix.Validate, :is_length}]},
+      h: %{h: ["auto", "min", "max", "fit", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/min-height
-      "min-h": %{"min-h": ["min", "max", "fit", {Twix.Validate, :is_length}]},
+      "min-h": %{"min-h": ["min", "max", "fit", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/max-height
-      "max-h": %{"max-h": ["min", "max", "fit", {Twix.Validate, :is_length}]},
+      "max-h": %{"max-h": ["min", "max", "fit", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/font-size
       "font-size": %{
-        text: ["base", {Twix.Validate, :is_tshirt_value}, {Twix.Validate, :is_arbitrary_length}]
+        text: [
+          "base",
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_length}
+        ]
       },
 
       # https://tailwindcss.com/docs/font-smoothing
@@ -319,7 +331,7 @@ defmodule Twix.DefaultConfig do
           "bold",
           "extrabold",
           "black",
-          {Twix.Validate, :is_arbitrary_number}
+          {TailwindMerge.Validate, :is_arbitrary_number}
         ]
       },
 
@@ -353,7 +365,7 @@ defmodule Twix.DefaultConfig do
           "wide",
           "wider",
           "widest",
-          {Twix.Validate, :is_arbitrary_length}
+          {TailwindMerge.Validate, :is_arbitrary_length}
         ]
       },
 
@@ -366,20 +378,20 @@ defmodule Twix.DefaultConfig do
           "normal",
           "relaxed",
           "loose",
-          {Twix.Validate, :is_length}
+          {TailwindMerge.Validate, :is_length}
         ]
       },
 
       # https://tailwindcss.com/docs/list-style-type
       "list-style-type": %{
-        list: ["none", "disc", "decimal", {Twix.Validate, :is_arbitrary_value}]
+        list: ["none", "disc", "decimal", {TailwindMerge.Validate, :is_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/list-style-position
       "list-style-position": %{list: ~w(inside outside)},
 
       # https://tailwindcss.com/docs/placeholder-opacity
-      "placeholder-opacity": %{"placeholder-opacity": [{Twix.Validate, :is_integer?}]},
+      "placeholder-opacity": %{"placeholder-opacity": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/text-align
       "text-alignment": %{text: ~w(left center right justify start end)},
@@ -388,7 +400,7 @@ defmodule Twix.DefaultConfig do
       "text-color": %{text: ConfigUtils.colors()},
 
       # https://tailwindcss.com/docs/text-opacity
-      "text-opacity": %{"text-opacity": [{Twix.Validate, :is_integer?}]},
+      "text-opacity": %{"text-opacity": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/text-decoration
       "text-decoration": ~w(underline overline line-through no-underline),
@@ -398,11 +410,11 @@ defmodule Twix.DefaultConfig do
 
       # https://tailwindcss.com/docs/text-decoration-thickness
       "text-decoration-thickness": %{
-        decoration: ["auto", "from-font", {Twix.Validate, :is_length}]
+        decoration: ["auto", "from-font", {TailwindMerge.Validate, :is_length}]
       },
 
       # https://tailwindcss.com/docs/text-underline-offset
-      "underline-offset": %{"underline-offset": ["auto", {Twix.Validate, :is_length}]},
+      "underline-offset": %{"underline-offset": ["auto", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/text-decoration-color
       "text-decoration-color": %{decoration: ConfigUtils.colors()},
@@ -414,7 +426,7 @@ defmodule Twix.DefaultConfig do
       "text-overflow": ~w(truncate text-ellipsis text-clip),
 
       # https://tailwindcss.com/docs/text-indent
-      indent: %{indent: ["px", {Twix.Validate, :is_length}]},
+      indent: %{indent: ["px", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/vertical-align
       "vertical-align": %{
@@ -427,7 +439,7 @@ defmodule Twix.DefaultConfig do
           "text-bottom",
           "sub",
           "super",
-          {Twix.Validate, :is_arbitrary_length}
+          {TailwindMerge.Validate, :is_arbitrary_length}
         ]
       },
 
@@ -438,7 +450,7 @@ defmodule Twix.DefaultConfig do
       break: %{break: ~w(normal words all keep)},
 
       # https://tailwindcss.com/docs/content
-      content: %{content: ["none", {Twix.Validate, :is_arbitrary_value}]},
+      content: %{content: ["none", {TailwindMerge.Validate, :is_arbitrary_value}]},
 
       # https://tailwindcss.com/docs/background-attachment
       "bg-attachment": %{bg: ~w(fixed local scroll)},
@@ -447,19 +459,23 @@ defmodule Twix.DefaultConfig do
       "bg-clip": %{"bg-clip": ~w(border padding content text)},
 
       # https://tailwindcss.com/docs/background-opacity
-      "bg-opacity": %{"bg-opacity": [{Twix.Validate, :is_integer?}]},
+      "bg-opacity": %{"bg-opacity": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/background-origin
       "bg-origin": %{"bg-origin": ~w(border padding content)},
 
       # https://tailwindcss.com/docs/background-position
-      "bg-position": %{bg: ConfigUtils.positions() ++ [{Twix.Validate, :is_arbitrary_position}]},
+      "bg-position": %{
+        bg: ConfigUtils.positions() ++ [{TailwindMerge.Validate, :is_arbitrary_position}]
+      },
 
       # https://tailwindcss.com/docs/background-repeat
       "bg-repeat": %{bg: ["no-repeat", %{repeat: ["", "x", "y", "round", "space"]}]},
 
       # https://tailwindcss.com/docs/background-size
-      "bg-size": %{bg: ["auto", "cover", "contain", {Twix.Validate, :is_arbitrary_length}]},
+      "bg-size": %{
+        bg: ["auto", "cover", "contain", {TailwindMerge.Validate, :is_arbitrary_length}]
+      },
 
       # https://tailwindcss.com/docs/background-image
       "bg-image": %{bg: ["none", %{"gradient-to": ~w(t tr r br b bl l tl)}]},
@@ -482,8 +498,8 @@ defmodule Twix.DefaultConfig do
           "none",
           "",
           "full",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_length}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_length}
         ]
       },
 
@@ -493,8 +509,8 @@ defmodule Twix.DefaultConfig do
           "none",
           "",
           "full",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_length}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_length}
         ]
       },
 
@@ -504,8 +520,8 @@ defmodule Twix.DefaultConfig do
           "none",
           "",
           "full",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_length}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_length}
         ]
       },
 
@@ -515,8 +531,8 @@ defmodule Twix.DefaultConfig do
           "none",
           "",
           "full",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_length}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_length}
         ]
       },
 
@@ -526,8 +542,8 @@ defmodule Twix.DefaultConfig do
           "none",
           "",
           "full",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_length}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_length}
         ]
       },
 
@@ -537,8 +553,8 @@ defmodule Twix.DefaultConfig do
           "none",
           "",
           "full",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_length}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_length}
         ]
       },
 
@@ -548,8 +564,8 @@ defmodule Twix.DefaultConfig do
           "none",
           "",
           "full",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_length}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_length}
         ]
       },
 
@@ -559,8 +575,8 @@ defmodule Twix.DefaultConfig do
           "none",
           "",
           "full",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_length}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_length}
         ]
       },
 
@@ -570,52 +586,52 @@ defmodule Twix.DefaultConfig do
           "none",
           "",
           "full",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_length}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_length}
         ]
       },
 
       # https://tailwindcss.com/docs/border-width
-      "border-w": %{border: ["", {Twix.Validate, :is_length}]},
+      "border-w": %{border: ["", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-width
-      "border-w-x": %{"border-x": ["", {Twix.Validate, :is_length}]},
+      "border-w-x": %{"border-x": ["", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-width
-      "border-w-y": %{"border-y": ["", {Twix.Validate, :is_length}]},
+      "border-w-y": %{"border-y": ["", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-width
-      "border-w-t": %{"border-t": ["", {Twix.Validate, :is_length}]},
+      "border-w-t": %{"border-t": ["", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-width
-      "border-w-r": %{"border-r": ["", {Twix.Validate, :is_length}]},
+      "border-w-r": %{"border-r": ["", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-width
-      "border-w-b": %{"border-b": ["", {Twix.Validate, :is_length}]},
+      "border-w-b": %{"border-b": ["", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-width
-      "border-w-l": %{"border-l": ["", {Twix.Validate, :is_length}]},
+      "border-w-l": %{"border-l": ["", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-opacity
-      "border-opacity": %{"border-opacity": [{Twix.Validate, :is_integer?}]},
+      "border-opacity": %{"border-opacity": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/border-style
       "border-style": %{border: ConfigUtils.line_styles() ++ ["hidden"]},
 
       # https://tailwindcss.com/docs/divide-width
-      "divide-x": %{"divide-x": ["", {Twix.Validate, :is_length}]},
+      "divide-x": %{"divide-x": ["", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/divide-width
       "divide-x-reverse": ["divide-x-reverse"],
 
       # https://tailwindcss.com/docs/divide-width
-      "divide-y": %{"divide-y": ["", {Twix.Validate, :is_length}]},
+      "divide-y": %{"divide-y": ["", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/divide-width
       "divide-y-reverse": ["divide-y-reverse"],
 
       # https://tailwindcss.com/docs/divide-opacity
-      "divide-opacity": %{"divide-opacity": [{Twix.Validate, :is_integer?}]},
+      "divide-opacity": %{"divide-opacity": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/divide-style
       "divide-style": %{divide: ConfigUtils.line_styles()},
@@ -648,16 +664,16 @@ defmodule Twix.DefaultConfig do
       "outline-style": %{outline: ConfigUtils.line_styles() ++ [""]},
 
       # https://tailwindcss.com/docs/outline-offset
-      "outline-offset": %{"outline-offset": [{Twix.Validate, :is_length}]},
+      "outline-offset": %{"outline-offset": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/outline-width
-      "outline-w": %{outline: [{Twix.Validate, :is_length}]},
+      "outline-w": %{outline: [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/outline-color
       "outline-color": %{outline: ConfigUtils.colors()},
 
       # https://tailwindcss.com/docs/ring-width
-      "ring-w": %{ring: ["", {Twix.Validate, :is_length}]},
+      "ring-w": %{ring: ["", {TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/ring-width
       "ring-w-inset": ["ring-inset"],
@@ -666,10 +682,10 @@ defmodule Twix.DefaultConfig do
       "ring-color": %{ring: ConfigUtils.colors()},
 
       # https://tailwindcss.com/docs/ring-opacity
-      "ring-opacity": %{"ring-opacity": [{Twix.Validate, :is_integer?}]},
+      "ring-opacity": %{"ring-opacity": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/ring-offset-width
-      "ring-offset-w": %{"ring-offset": [{Twix.Validate, :is_length}]},
+      "ring-offset-w": %{"ring-offset": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/ring-offset-color
       "ring-offset-color": %{"ring-offset": ConfigUtils.colors()},
@@ -680,8 +696,8 @@ defmodule Twix.DefaultConfig do
           "",
           "inner",
           "none",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_shadow}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_shadow}
         ]
       },
 
@@ -689,7 +705,7 @@ defmodule Twix.DefaultConfig do
       "shadow-color": %{shadow: ConfigUtils.colors()},
 
       # https://tailwindcss.com/docs/opacity
-      opacity: %{opacity: [{Twix.Validate, :is_integer?}]},
+      opacity: %{opacity: [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/mix-blend-mode
       "mix-blend": %{"mix-blend": ConfigUtils.blend_modes()},
@@ -705,24 +721,24 @@ defmodule Twix.DefaultConfig do
         blur: [
           "",
           "none",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_length}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_length}
         ]
       },
 
       # https://tailwindcss.com/docs/brightness
-      brightness: %{brightness: [{Twix.Validate, :is_integer?}]},
+      brightness: %{brightness: [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/contrast
-      contrast: %{contrast: [{Twix.Validate, :is_integer?}]},
+      contrast: %{contrast: [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/drop-shadow
       "drop-shadow": %{
         "drop-shadow": [
           "",
           "none",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_value}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_value}
         ]
       },
 
@@ -730,13 +746,13 @@ defmodule Twix.DefaultConfig do
       grayscale: %{grayscale: ConfigUtils.zero_and_empty()},
 
       # https://tailwindcss.com/docs/hue-rotate
-      "hue-rotate": %{"hue-rotate": [{Twix.Validate, :is_integer?}]},
+      "hue-rotate": %{"hue-rotate": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/invert
       invert: %{invert: ConfigUtils.zero_and_empty()},
 
       # https://tailwindcss.com/docs/saturate
-      saturate: %{saturate: [{Twix.Validate, :is_integer?}]},
+      saturate: %{saturate: [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/sepia
       sepia: %{sepia: ConfigUtils.zero_and_empty()},
@@ -749,31 +765,31 @@ defmodule Twix.DefaultConfig do
         "backdrop-blur": [
           "",
           "none",
-          {Twix.Validate, :is_tshirt_value},
-          {Twix.Validate, :is_arbitrary_value}
+          {TailwindMerge.Validate, :is_tshirt_value},
+          {TailwindMerge.Validate, :is_arbitrary_value}
         ]
       },
 
       # https://tailwindcss.com/docs/backdrop-brightness
-      "backdrop-brightness": %{"backdrop-brightness": [{Twix.Validate, :is_integer?}]},
+      "backdrop-brightness": %{"backdrop-brightness": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/backdrop-contrast
-      "backdrop-contrast": %{"backdrop-contrast": [{Twix.Validate, :is_integer?}]},
+      "backdrop-contrast": %{"backdrop-contrast": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/backdrop-grayscale
       "backdrop-grayscale": %{"backdrop-grayscale": ConfigUtils.zero_and_empty()},
 
       # https://tailwindcss.com/docs/backdrop-hue-rotate
-      "backdrop-hue-rotate": %{"backdrop-hue-rotate": [{Twix.Validate, :is_integer?}]},
+      "backdrop-hue-rotate": %{"backdrop-hue-rotate": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/backdrop-invert
       "backdrop-invert": %{"backdrop-invert": ConfigUtils.zero_and_empty()},
 
       # https://tailwindcss.com/docs/backdrop-opacity
-      "backdrop-opacity": %{"backdrop-opacity": [{Twix.Validate, :is_integer?}]},
+      "backdrop-opacity": %{"backdrop-opacity": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/backdrop-saturate
-      "backdrop-saturate": %{"backdrop-saturate": [{Twix.Validate, :is_integer?}]},
+      "backdrop-saturate": %{"backdrop-saturate": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/backdrop-sepia
       "backdrop-sepia": %{"backdrop-sepia": ConfigUtils.zero_and_empty()},
@@ -782,13 +798,13 @@ defmodule Twix.DefaultConfig do
       "border-collapse": %{border: ["collapse", "separate"]},
 
       # https://tailwindcss.com/docs/border-spacing
-      "border-spacing": %{"border-spacing": [{Twix.Validate, :is_length}]},
+      "border-spacing": %{"border-spacing": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-spacing
-      "border-spacing-x": %{"border-spacing-x": [{Twix.Validate, :is_length}]},
+      "border-spacing-x": %{"border-spacing-x": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-spacing
-      "border-spacing-y": %{"border-spacing-y": [{Twix.Validate, :is_length}]},
+      "border-spacing-y": %{"border-spacing-y": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/table-layout
       "table-layout": %{table: ["auto", "fixed"]},
@@ -803,18 +819,20 @@ defmodule Twix.DefaultConfig do
           "opacity",
           "shadow",
           "transform",
-          {Twix.Validate, :is_arbitrary_value}
+          {TailwindMerge.Validate, :is_arbitrary_value}
         ]
       },
 
       # https://tailwindcss.com/docs/transition-duration
-      duration: %{duration: [{Twix.Validate, :is_integer?}]},
+      duration: %{duration: [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/transition-timing-function
-      ease: %{ease: ["linear", "in", "out", "in-out", {Twix.Validate, :is_arbitrary_value}]},
+      ease: %{
+        ease: ["linear", "in", "out", "in-out", {TailwindMerge.Validate, :is_arbitrary_value}]
+      },
 
       # https://tailwindcss.com/docs/transition-delay
-      delay: %{delay: [{Twix.Validate, :is_integer?}]},
+      delay: %{delay: [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/animation
       animate: %{
@@ -824,7 +842,7 @@ defmodule Twix.DefaultConfig do
           "ping",
           "pulse",
           "bounce",
-          {Twix.Validate, :is_arbitrary_value}
+          {TailwindMerge.Validate, :is_arbitrary_value}
         ]
       },
 
@@ -832,31 +850,42 @@ defmodule Twix.DefaultConfig do
       transform: %{transform: ["", "gpu", "none"]},
 
       # https://tailwindcss.com/docs/scale
-      scale: %{scale: [{Twix.Validate, :is_integer?}]},
+      scale: %{scale: [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/scale
-      "scale-x": %{"scale-x": [{Twix.Validate, :is_integer?}]},
+      "scale-x": %{"scale-x": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/scale
-      "scale-y": %{"scale-y": [{Twix.Validate, :is_integer?}]},
+      "scale-y": %{"scale-y": [{TailwindMerge.Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/rotate
-      rotate: %{rotate: [{Twix.Validate, :is_integer?}, {Twix.Validate, :is_arbitrary_value}]},
+      rotate: %{
+        rotate: [
+          {TailwindMerge.Validate, :is_integer?},
+          {TailwindMerge.Validate, :is_arbitrary_value}
+        ]
+      },
 
       # https://tailwindcss.com/docs/translate
-      "translate-x": %{"translate-x": [{Twix.Validate, :is_length}]},
+      "translate-x": %{"translate-x": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/translate
-      "translate-y": %{"translate-y": [{Twix.Validate, :is_length}]},
+      "translate-y": %{"translate-y": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/skew
       "skew-x": %{
-        "skew-x": [{Twix.Validate, :is_integer?}, {Twix.Validate, :is_arbitrary_value}]
+        "skew-x": [
+          {TailwindMerge.Validate, :is_integer?},
+          {TailwindMerge.Validate, :is_arbitrary_value}
+        ]
       },
 
       # https://tailwindcss.com/docs/skew
       "skew-y": %{
-        "skew-y": [{Twix.Validate, :is_integer?}, {Twix.Validate, :is_arbitrary_value}]
+        "skew-y": [
+          {TailwindMerge.Validate, :is_integer?},
+          {TailwindMerge.Validate, :is_arbitrary_value}
+        ]
       },
 
       # https://tailwindcss.com/docs/transform-origin
@@ -871,7 +900,7 @@ defmodule Twix.DefaultConfig do
           "bottom-left",
           "left",
           "top-left",
-          {Twix.Validate, :is_arbitrary_value}
+          {TailwindMerge.Validate, :is_arbitrary_value}
         ]
       },
 
@@ -920,7 +949,7 @@ defmodule Twix.DefaultConfig do
           "nwse-resize",
           "zoom-in",
           "zoom-out",
-          {Twix.Validate, :is_arbitrary_value}
+          {TailwindMerge.Validate, :is_arbitrary_value}
         ]
       },
 
@@ -937,46 +966,46 @@ defmodule Twix.DefaultConfig do
       "scroll-behavior": %{scroll: ["auto", "smooth"]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-m": %{"scroll-m": [{Twix.Validate, :is_length}]},
+      "scroll-m": %{"scroll-m": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-mx": %{"scroll-mx": [{Twix.Validate, :is_length}]},
+      "scroll-mx": %{"scroll-mx": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-my": %{"scroll-my": [{Twix.Validate, :is_length}]},
+      "scroll-my": %{"scroll-my": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-mt": %{"scroll-mt": [{Twix.Validate, :is_length}]},
+      "scroll-mt": %{"scroll-mt": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-mr": %{"scroll-mr": [{Twix.Validate, :is_length}]},
+      "scroll-mr": %{"scroll-mr": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-mb": %{"scroll-mb": [{Twix.Validate, :is_length}]},
+      "scroll-mb": %{"scroll-mb": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-ml": %{"scroll-ml": [{Twix.Validate, :is_length}]},
+      "scroll-ml": %{"scroll-ml": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-p": %{"scroll-p": [{Twix.Validate, :is_length}]},
+      "scroll-p": %{"scroll-p": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-px": %{"scroll-px": [{Twix.Validate, :is_length}]},
+      "scroll-px": %{"scroll-px": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-py": %{"scroll-py": [{Twix.Validate, :is_length}]},
+      "scroll-py": %{"scroll-py": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-pt": %{"scroll-pt": [{Twix.Validate, :is_length}]},
+      "scroll-pt": %{"scroll-pt": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-pr": %{"scroll-pr": [{Twix.Validate, :is_length}]},
+      "scroll-pr": %{"scroll-pr": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-pb": %{"scroll-pb": [{Twix.Validate, :is_length}]},
+      "scroll-pb": %{"scroll-pb": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-pl": %{"scroll-pl": [{Twix.Validate, :is_length}]},
+      "scroll-pl": %{"scroll-pl": [{TailwindMerge.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-snap-align
       "snap-align": %{snap: ~w(start end center align-none)},
@@ -1011,7 +1040,7 @@ defmodule Twix.DefaultConfig do
           "scroll",
           "contents",
           "transform",
-          {Twix.Validate, :is_arbitrary_value}
+          {TailwindMerge.Validate, :is_arbitrary_value}
         ]
       },
 
@@ -1020,7 +1049,10 @@ defmodule Twix.DefaultConfig do
 
       # https://tailwindcss.com/docs/stroke-width
       "stroke-w": %{
-        stroke: [{Twix.Validate, :is_length}, {Twix.Validate, :is_arbitrary_number}]
+        stroke: [
+          {TailwindMerge.Validate, :is_length},
+          {TailwindMerge.Validate, :is_arbitrary_number}
+        ]
       },
 
       # https://tailwindcss.com/docs/stroke
