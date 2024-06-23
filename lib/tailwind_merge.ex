@@ -7,15 +7,16 @@ defmodule TailwindMerge do
 
   ## The mechanism
 
-  When merge two clasess, this function will first get the group of the two
+  When merge two clasess, this function will first get the groups of the two
   classes. If they are in the same group, the last one will be retained, the
-  previous one will be dropped. It will also consider the variants (like `hover`)
-  and, once again, the last one will be retained, the previous one will be
-  dropped.
+  previous one will be dropped.
 
+  It will also consider the variants (like `hover`) and, once again, the last
+  one will be retained, the previous one will be dropped.
   """
   def merge(classes) when is_list(classes) do
-    Enum.join(classes, " ")
+    classes
+    |> Enum.join(" ")
     |> merge()
   end
 
@@ -25,13 +26,10 @@ defmodule TailwindMerge do
     |> split_classes()
     |> Enum.map(&Mapping.new(&1))
     |> Enum.reverse()
-    |> Enum.uniq_by(fn %Mapping{mods: mods, group: group} -> {mods, group} end)
+    |> Enum.uniq_by(fn %Mapping{modifiers: modifiers, group: group} -> {modifiers, group} end)
     |> handle_conflicts()
     |> Enum.reverse()
-    |> Enum.map(fn %Mapping{base_class: class, mods: mods} ->
-      (mods ++ [class]) |> Enum.join(":")
-    end)
-    |> Enum.join(" ")
+    |> Enum.map_join(" ", &to_string/1)
   end
 
   defp split_classes(classes) when is_binary(classes) do
@@ -40,22 +38,26 @@ defmodule TailwindMerge do
 
   defp handle_conflicts(mappings) do
     mappings
-    |> Enum.reduce(%{classes: [], conflicts: []}, fn %Mapping{mods: mods, group: group} = data,
-                                                     acc ->
-      class = Enum.join(mods ++ [group], ":")
+    |> Enum.reduce(
+      %{classes: [], conflicts: []},
+      fn %Mapping{modifiers: modifiers, group: group} =
+           data,
+         acc ->
+        class = Enum.join(modifiers ++ [group], ":")
 
-      case Enum.member?(acc.conflicts, class) do
-        true ->
-          acc
+        case Enum.member?(acc.conflicts, class) do
+          true ->
+            acc
 
-        false ->
-          conflicts =
-            group
-            |> get_conflicting_class_group_ids()
+          false ->
+            conflicts =
+              group
+              |> get_conflicting_class_group_ids()
 
-          %{acc | conflicts: conflicts, classes: acc.classes ++ [data]}
+            %{acc | conflicts: conflicts, classes: acc.classes ++ [data]}
+        end
       end
-    end)
+    )
     |> Map.get(:classes)
   end
 

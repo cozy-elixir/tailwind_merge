@@ -1,4 +1,6 @@
 defmodule TailwindMerge.ConfigUtils do
+  alias TailwindMerge.Validate
+
   def breaks(), do: ~w(auto avoid all avoid-page page left right column)
 
   def positions(),
@@ -13,7 +15,7 @@ defmodule TailwindMerge.ConfigUtils do
     do:
       ~w(normal multiply screen overlay darken lighten color-dodge color-burn hard-light soft-light difference exclusion hue saturation color luminosity plus-lighter)
 
-  def zero_and_empty(), do: ["", "0", {TailwindMerge.Validate, :is_arbitrary_value}]
+  def zero_and_empty(), do: ["", "0", {Validate, :is_arbitrary_value}]
 
   def colors() do
     [
@@ -23,28 +25,28 @@ defmodule TailwindMerge.ConfigUtils do
       "black",
       "white",
       %{
-        slate: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        gray: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        zinc: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        neutral: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        stone: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        red: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        orange: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        amber: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        yellow: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        lime: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        green: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        emerald: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        teal: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        cyan: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        sky: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        blue: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        indigo: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        violet: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        purple: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        fuchsia: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        pink: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}],
-        rose: [{TailwindMerge.Validate, :is_integer?}, {TailwindMerge.Validate, :is_opacity?}]
+        slate: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        gray: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        zinc: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        neutral: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        stone: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        red: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        orange: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        amber: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        yellow: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        lime: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        green: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        emerald: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        teal: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        cyan: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        sky: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        blue: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        indigo: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        violet: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        purple: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        fuchsia: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        pink: [{Validate, :is_integer?}, {Validate, :is_opacity?}],
+        rose: [{Validate, :is_integer?}, {Validate, :is_opacity?}]
       }
     ]
   end

@@ -1,32 +1,33 @@
 defmodule TailwindMerge.Mapping do
-  defstruct [:base_class, :mods, :group, :important]
+  defstruct [:base_class, :group, :modifiers, :important]
 
   @before_compile TailwindMerge.Generator
 
-  def new(base_class, mods, group, important) do
-    %__MODULE__{base_class: base_class, mods: mods, group: group, important: important}
-  end
-
   def new(class) do
-    {base_class, mods} = build_mods(class)
-    {base_class, important} = get_important(base_class)
+    {base_class, modifiers} = pop_modifiers(class)
+    {base_class, important} = pop_important(base_class)
     group = lookup_group(base_class)
 
-    %__MODULE__{base_class: base_class, mods: mods, group: group, important: important}
+    %__MODULE__{
+      base_class: base_class,
+      group: group,
+      modifiers: modifiers,
+      important: important
+    }
   end
 
-  # -- private functions
-
-  defp build_mods(class) do
+  defp pop_modifiers(class) do
     Regex.split(~r/:(?![^[]*?\])/, class)
     |> List.pop_at(-1)
   end
 
-  defp get_important("!" <> base_class) do
-    {String.slice(base_class, 1..-1), true}
-  end
+  defp pop_important("!" <> base_class), do: {base_class, true}
+  defp pop_important(base_class), do: {base_class, false}
+end
 
-  defp get_important(base_class) do
-    {base_class, false}
+defimpl String.Chars, for: TailwindMerge.Mapping do
+  def to_string(%TailwindMerge.Mapping{base_class: base_class, modifiers: modifiers}) do
+    List.flatten(modifiers, [base_class])
+    |> Enum.join(":")
   end
 end

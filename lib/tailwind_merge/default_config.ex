@@ -1,18 +1,19 @@
 defmodule TailwindMerge.DefaultConfig do
   alias TailwindMerge.ConfigUtils
+  alias TailwindMerge.Validate
 
   def class_groups() do
     [
       # https://tailwindcss.com/docs/aspect-ratio
       aspect: %{
-        aspect: ["auto", "square", "video", {TailwindMerge.Validate, :is_arbitrary_value}]
+        aspect: ["auto", "square", "video", {Validate, :is_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/container
       container: ["container"],
 
       # https://tailwindcss.com/docs/columns
-      columns: %{columns: [{TailwindMerge.Validate, :is_tshirt_value}]},
+      columns: %{columns: [{Validate, :is_tshirt_value}]},
 
       # https://tailwindcss.com/docs/break-after
       "break-after": %{"break-after": ConfigUtils.breaks()},
@@ -68,7 +69,7 @@ defmodule TailwindMerge.DefaultConfig do
 
       # https://tailwindcss.com/docs/object-position
       "object-position": %{
-        object: ConfigUtils.positions() ++ [{TailwindMerge.Validate, :is_arbitrary_value}]
+        object: ConfigUtils.positions() ++ [{Validate, :is_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/overflow
@@ -93,34 +94,34 @@ defmodule TailwindMerge.DefaultConfig do
       position: ~w(static fixed absolute relative sticky),
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      inset: %{inset: ["auto", {TailwindMerge.Validate, :is_length}]},
+      inset: %{inset: ["auto", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      "inset-x": %{"inset-x": ["auto", {TailwindMerge.Validate, :is_length}]},
+      "inset-x": %{"inset-x": ["auto", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      "inset-y": %{"inset-y": ["auto", {TailwindMerge.Validate, :is_length}]},
+      "inset-y": %{"inset-y": ["auto", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      top: %{top: ["auto", {TailwindMerge.Validate, :is_length}]},
+      top: %{top: ["auto", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      right: %{right: ["auto", {TailwindMerge.Validate, :is_length}]},
+      right: %{right: ["auto", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      bottom: %{bottom: ["auto", {TailwindMerge.Validate, :is_length}]},
+      bottom: %{bottom: ["auto", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/top-right-bottom-left
-      left: %{left: ["auto", {TailwindMerge.Validate, :is_length}]},
+      left: %{left: ["auto", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/visibility
       visibility: ~w(visible invisible collapse),
 
       # https://tailwindcss.com/docs/z-index
-      z: %{z: [{TailwindMerge.Validate, :is_integer?}]},
+      z: %{z: [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/flex-basis
-      basis: %{basis: [{TailwindMerge.Validate, :is_length}]},
+      basis: %{basis: [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/flex-direction
       "flex-direction": %{flex: ~w(row row-reverse col col-reverse)},
@@ -130,7 +131,7 @@ defmodule TailwindMerge.DefaultConfig do
 
       # https://tailwindcss.com/docs/flex
       flex: %{
-        flex: ["1", "auto", "initial", "none", {TailwindMerge.Validate, :is_arbitrary_value}]
+        flex: ["1", "auto", "initial", "none", {Validate, :is_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/flex-grow
@@ -140,57 +141,57 @@ defmodule TailwindMerge.DefaultConfig do
       shrink: %{shrink: ConfigUtils.zero_and_empty()},
 
       # https://tailwindcss.com/docs/order
-      order: %{order: ["first", "last", "none", {TailwindMerge.Validate, :is_integer?}]},
+      order: %{order: ["first", "last", "none", {Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/grid-template-columns
       "grid-cols": %{
-        "grid-cols": ["none", {TailwindMerge.Validate, :is_integer_or_arbitrary_value}]
+        "grid-cols": ["none", {Validate, :is_integer_or_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/grid-column
-      "col-start-end": %{col: ["auto", %{span: ["full", {TailwindMerge.Validate, :is_integer?}]}]},
+      "col-start-end": %{col: ["auto", %{span: ["full", {Validate, :is_integer?}]}]},
 
       # https://tailwindcss.com/docs/grid-column
-      "col-start": %{"col-start": ["auto", {TailwindMerge.Validate, :is_integer?}]},
+      "col-start": %{"col-start": ["auto", {Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/grid-column
-      "col-end": %{"col-end": ["auto", {TailwindMerge.Validate, :is_integer?}]},
+      "col-end": %{"col-end": ["auto", {Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/grid-template-rows
       "grid-rows": %{
-        "grid-rows": ["none", {TailwindMerge.Validate, :is_integer_or_arbitrary_value}]
+        "grid-rows": ["none", {Validate, :is_integer_or_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/grid-row
-      "row-start-end": %{row: ["auto", %{span: ["full", {TailwindMerge.Validate, :is_integer?}]}]},
+      "row-start-end": %{row: ["auto", %{span: ["full", {Validate, :is_integer?}]}]},
 
       # https://tailwindcss.com/docs/grid-row
-      "row-start": %{"row-start": ["auto", {TailwindMerge.Validate, :is_integer?}]},
+      "row-start": %{"row-start": ["auto", {Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/grid-row
-      "row-end": %{"row-end": ["auto", {TailwindMerge.Validate, :is_integer?}]},
+      "row-end": %{"row-end": ["auto", {Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/grid-auto-flow
       "grid-flow": %{"grid-flow": ~w(row col dense row-dense col-dense)},
 
       # https://tailwindcss.com/docs/grid-auto-columns
       "auto-cols": %{
-        "auto-cols": ["auto", "min", "max", "fr", {TailwindMerge.Validate, :is_arbitrary_value}]
+        "auto-cols": ["auto", "min", "max", "fr", {Validate, :is_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/grid-auto-rows
       "auto-rows": %{
-        "auto-rows": ["auto", "min", "max", "fr", {TailwindMerge.Validate, :is_arbitrary_value}]
+        "auto-rows": ["auto", "min", "max", "fr", {Validate, :is_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/gap
-      gap: %{gap: ["px", {TailwindMerge.Validate, :is_length}]},
+      gap: %{gap: ["px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/gap
-      "gap-x": %{"gap-x": ["px", {TailwindMerge.Validate, :is_length}]},
+      "gap-x": %{"gap-x": ["px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/gap
-      "gap-y": %{"gap-y": ["px", {TailwindMerge.Validate, :is_length}]},
+      "gap-y": %{"gap-y": ["px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/justify-content
       "justify-content": %{justify: ConfigUtils.align()},
@@ -220,64 +221,64 @@ defmodule TailwindMerge.DefaultConfig do
       "place-self": %{"place-self": ~w(auto start end center stretch)},
 
       # https://tailwindcss.com/docs/padding
-      p: %{p: ["px", {TailwindMerge.Validate, :is_length}]},
+      p: %{p: ["px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/padding
-      px: %{px: ["px", {TailwindMerge.Validate, :is_length}]},
+      px: %{px: ["px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/padding
-      py: %{py: ["px", {TailwindMerge.Validate, :is_length}]},
+      py: %{py: ["px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/padding
-      pt: %{pt: ["px", {TailwindMerge.Validate, :is_length}]},
+      pt: %{pt: ["px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/padding
-      pr: %{pr: ["px", {TailwindMerge.Validate, :is_length}]},
+      pr: %{pr: ["px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/padding
-      pb: %{pb: ["px", {TailwindMerge.Validate, :is_length}]},
+      pb: %{pb: ["px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/padding
-      pl: %{pl: ["px", {TailwindMerge.Validate, :is_length}]},
+      pl: %{pl: ["px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      m: %{m: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
+      m: %{m: ["auto", "px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      mx: %{mx: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
+      mx: %{mx: ["auto", "px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      my: %{my: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
+      my: %{my: ["auto", "px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      mt: %{mt: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
+      mt: %{mt: ["auto", "px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      mr: %{mr: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
+      mr: %{mr: ["auto", "px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      mb: %{mb: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
+      mb: %{mb: ["auto", "px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/margin
-      ml: %{ml: ["auto", "px", {TailwindMerge.Validate, :is_length}]},
+      ml: %{ml: ["auto", "px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/space
-      "space-x": %{"space-x": [{TailwindMerge.Validate, :is_length}]},
+      "space-x": %{"space-x": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/space
       "space-x-reverse": ["space-x-reverse"],
 
       # https://tailwindcss.com/docs/space
-      "space-y": %{"space-y": [{TailwindMerge.Validate, :is_length}]},
+      "space-y": %{"space-y": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/space
       "space-y-reverse": ["space-y-reverse"],
 
       # https://tailwindcss.com/docs/width
-      w: %{w: ["auto", "min", "max", "fit", {TailwindMerge.Validate, :is_length}]},
+      w: %{w: ["auto", "min", "max", "fit", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/min-width
-      "min-w": %{"min-w": ["min", "max", "fit", {TailwindMerge.Validate, :is_length}]},
+      "min-w": %{"min-w": ["min", "max", "fit", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/max-width
       "max-w": %{
@@ -289,27 +290,27 @@ defmodule TailwindMerge.DefaultConfig do
           "max",
           "fit",
           "prose",
-          %{screen: [{TailwindMerge.Validate, :is_tshirt_value}]},
-          {TailwindMerge.Validate, :is_arbitrary_length},
-          {TailwindMerge.Validate, :is_tshirt_value}
+          %{screen: [{Validate, :is_tshirt_value}]},
+          {Validate, :is_arbitrary_length},
+          {Validate, :is_tshirt_value}
         ]
       },
 
       # https://tailwindcss.com/docs/height
-      h: %{h: ["auto", "min", "max", "fit", {TailwindMerge.Validate, :is_length}]},
+      h: %{h: ["auto", "min", "max", "fit", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/min-height
-      "min-h": %{"min-h": ["min", "max", "fit", {TailwindMerge.Validate, :is_length}]},
+      "min-h": %{"min-h": ["min", "max", "fit", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/max-height
-      "max-h": %{"max-h": ["min", "max", "fit", {TailwindMerge.Validate, :is_length}]},
+      "max-h": %{"max-h": ["min", "max", "fit", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/font-size
       "font-size": %{
         text: [
           "base",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_length}
         ]
       },
 
@@ -331,7 +332,7 @@ defmodule TailwindMerge.DefaultConfig do
           "bold",
           "extrabold",
           "black",
-          {TailwindMerge.Validate, :is_arbitrary_number}
+          {Validate, :is_arbitrary_number}
         ]
       },
 
@@ -365,7 +366,7 @@ defmodule TailwindMerge.DefaultConfig do
           "wide",
           "wider",
           "widest",
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_arbitrary_length}
         ]
       },
 
@@ -378,20 +379,20 @@ defmodule TailwindMerge.DefaultConfig do
           "normal",
           "relaxed",
           "loose",
-          {TailwindMerge.Validate, :is_length}
+          {Validate, :is_length}
         ]
       },
 
       # https://tailwindcss.com/docs/list-style-type
       "list-style-type": %{
-        list: ["none", "disc", "decimal", {TailwindMerge.Validate, :is_arbitrary_value}]
+        list: ["none", "disc", "decimal", {Validate, :is_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/list-style-position
       "list-style-position": %{list: ~w(inside outside)},
 
       # https://tailwindcss.com/docs/placeholder-opacity
-      "placeholder-opacity": %{"placeholder-opacity": [{TailwindMerge.Validate, :is_integer?}]},
+      "placeholder-opacity": %{"placeholder-opacity": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/text-align
       "text-alignment": %{text: ~w(left center right justify start end)},
@@ -400,7 +401,7 @@ defmodule TailwindMerge.DefaultConfig do
       "text-color": %{text: ConfigUtils.colors()},
 
       # https://tailwindcss.com/docs/text-opacity
-      "text-opacity": %{"text-opacity": [{TailwindMerge.Validate, :is_integer?}]},
+      "text-opacity": %{"text-opacity": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/text-decoration
       "text-decoration": ~w(underline overline line-through no-underline),
@@ -410,11 +411,11 @@ defmodule TailwindMerge.DefaultConfig do
 
       # https://tailwindcss.com/docs/text-decoration-thickness
       "text-decoration-thickness": %{
-        decoration: ["auto", "from-font", {TailwindMerge.Validate, :is_length}]
+        decoration: ["auto", "from-font", {Validate, :is_length}]
       },
 
       # https://tailwindcss.com/docs/text-underline-offset
-      "underline-offset": %{"underline-offset": ["auto", {TailwindMerge.Validate, :is_length}]},
+      "underline-offset": %{"underline-offset": ["auto", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/text-decoration-color
       "text-decoration-color": %{decoration: ConfigUtils.colors()},
@@ -426,7 +427,7 @@ defmodule TailwindMerge.DefaultConfig do
       "text-overflow": ~w(truncate text-ellipsis text-clip),
 
       # https://tailwindcss.com/docs/text-indent
-      indent: %{indent: ["px", {TailwindMerge.Validate, :is_length}]},
+      indent: %{indent: ["px", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/vertical-align
       "vertical-align": %{
@@ -439,7 +440,7 @@ defmodule TailwindMerge.DefaultConfig do
           "text-bottom",
           "sub",
           "super",
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_arbitrary_length}
         ]
       },
 
@@ -450,7 +451,7 @@ defmodule TailwindMerge.DefaultConfig do
       break: %{break: ~w(normal words all keep)},
 
       # https://tailwindcss.com/docs/content
-      content: %{content: ["none", {TailwindMerge.Validate, :is_arbitrary_value}]},
+      content: %{content: ["none", {Validate, :is_arbitrary_value}]},
 
       # https://tailwindcss.com/docs/background-attachment
       "bg-attachment": %{bg: ~w(fixed local scroll)},
@@ -459,14 +460,14 @@ defmodule TailwindMerge.DefaultConfig do
       "bg-clip": %{"bg-clip": ~w(border padding content text)},
 
       # https://tailwindcss.com/docs/background-opacity
-      "bg-opacity": %{"bg-opacity": [{TailwindMerge.Validate, :is_integer?}]},
+      "bg-opacity": %{"bg-opacity": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/background-origin
       "bg-origin": %{"bg-origin": ~w(border padding content)},
 
       # https://tailwindcss.com/docs/background-position
       "bg-position": %{
-        bg: ConfigUtils.positions() ++ [{TailwindMerge.Validate, :is_arbitrary_position}]
+        bg: ConfigUtils.positions() ++ [{Validate, :is_arbitrary_position}]
       },
 
       # https://tailwindcss.com/docs/background-repeat
@@ -474,7 +475,7 @@ defmodule TailwindMerge.DefaultConfig do
 
       # https://tailwindcss.com/docs/background-size
       "bg-size": %{
-        bg: ["auto", "cover", "contain", {TailwindMerge.Validate, :is_arbitrary_length}]
+        bg: ["auto", "cover", "contain", {Validate, :is_arbitrary_length}]
       },
 
       # https://tailwindcss.com/docs/background-image
@@ -498,8 +499,8 @@ defmodule TailwindMerge.DefaultConfig do
           "none",
           "",
           "full",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_length}
         ]
       },
 
@@ -509,8 +510,8 @@ defmodule TailwindMerge.DefaultConfig do
           "none",
           "",
           "full",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_length}
         ]
       },
 
@@ -520,8 +521,8 @@ defmodule TailwindMerge.DefaultConfig do
           "none",
           "",
           "full",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_length}
         ]
       },
 
@@ -531,8 +532,8 @@ defmodule TailwindMerge.DefaultConfig do
           "none",
           "",
           "full",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_length}
         ]
       },
 
@@ -542,8 +543,8 @@ defmodule TailwindMerge.DefaultConfig do
           "none",
           "",
           "full",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_length}
         ]
       },
 
@@ -553,8 +554,8 @@ defmodule TailwindMerge.DefaultConfig do
           "none",
           "",
           "full",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_length}
         ]
       },
 
@@ -564,8 +565,8 @@ defmodule TailwindMerge.DefaultConfig do
           "none",
           "",
           "full",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_length}
         ]
       },
 
@@ -575,8 +576,8 @@ defmodule TailwindMerge.DefaultConfig do
           "none",
           "",
           "full",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_length}
         ]
       },
 
@@ -586,52 +587,52 @@ defmodule TailwindMerge.DefaultConfig do
           "none",
           "",
           "full",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_length}
         ]
       },
 
       # https://tailwindcss.com/docs/border-width
-      "border-w": %{border: ["", {TailwindMerge.Validate, :is_length}]},
+      "border-w": %{border: ["", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-width
-      "border-w-x": %{"border-x": ["", {TailwindMerge.Validate, :is_length}]},
+      "border-w-x": %{"border-x": ["", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-width
-      "border-w-y": %{"border-y": ["", {TailwindMerge.Validate, :is_length}]},
+      "border-w-y": %{"border-y": ["", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-width
-      "border-w-t": %{"border-t": ["", {TailwindMerge.Validate, :is_length}]},
+      "border-w-t": %{"border-t": ["", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-width
-      "border-w-r": %{"border-r": ["", {TailwindMerge.Validate, :is_length}]},
+      "border-w-r": %{"border-r": ["", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-width
-      "border-w-b": %{"border-b": ["", {TailwindMerge.Validate, :is_length}]},
+      "border-w-b": %{"border-b": ["", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-width
-      "border-w-l": %{"border-l": ["", {TailwindMerge.Validate, :is_length}]},
+      "border-w-l": %{"border-l": ["", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-opacity
-      "border-opacity": %{"border-opacity": [{TailwindMerge.Validate, :is_integer?}]},
+      "border-opacity": %{"border-opacity": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/border-style
       "border-style": %{border: ConfigUtils.line_styles() ++ ["hidden"]},
 
       # https://tailwindcss.com/docs/divide-width
-      "divide-x": %{"divide-x": ["", {TailwindMerge.Validate, :is_length}]},
+      "divide-x": %{"divide-x": ["", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/divide-width
       "divide-x-reverse": ["divide-x-reverse"],
 
       # https://tailwindcss.com/docs/divide-width
-      "divide-y": %{"divide-y": ["", {TailwindMerge.Validate, :is_length}]},
+      "divide-y": %{"divide-y": ["", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/divide-width
       "divide-y-reverse": ["divide-y-reverse"],
 
       # https://tailwindcss.com/docs/divide-opacity
-      "divide-opacity": %{"divide-opacity": [{TailwindMerge.Validate, :is_integer?}]},
+      "divide-opacity": %{"divide-opacity": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/divide-style
       "divide-style": %{divide: ConfigUtils.line_styles()},
@@ -664,16 +665,16 @@ defmodule TailwindMerge.DefaultConfig do
       "outline-style": %{outline: ConfigUtils.line_styles() ++ [""]},
 
       # https://tailwindcss.com/docs/outline-offset
-      "outline-offset": %{"outline-offset": [{TailwindMerge.Validate, :is_length}]},
+      "outline-offset": %{"outline-offset": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/outline-width
-      "outline-w": %{outline: [{TailwindMerge.Validate, :is_length}]},
+      "outline-w": %{outline: [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/outline-color
       "outline-color": %{outline: ConfigUtils.colors()},
 
       # https://tailwindcss.com/docs/ring-width
-      "ring-w": %{ring: ["", {TailwindMerge.Validate, :is_length}]},
+      "ring-w": %{ring: ["", {Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/ring-width
       "ring-w-inset": ["ring-inset"],
@@ -682,10 +683,10 @@ defmodule TailwindMerge.DefaultConfig do
       "ring-color": %{ring: ConfigUtils.colors()},
 
       # https://tailwindcss.com/docs/ring-opacity
-      "ring-opacity": %{"ring-opacity": [{TailwindMerge.Validate, :is_integer?}]},
+      "ring-opacity": %{"ring-opacity": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/ring-offset-width
-      "ring-offset-w": %{"ring-offset": [{TailwindMerge.Validate, :is_length}]},
+      "ring-offset-w": %{"ring-offset": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/ring-offset-color
       "ring-offset-color": %{"ring-offset": ConfigUtils.colors()},
@@ -696,8 +697,8 @@ defmodule TailwindMerge.DefaultConfig do
           "",
           "inner",
           "none",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_shadow}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_shadow}
         ]
       },
 
@@ -705,7 +706,7 @@ defmodule TailwindMerge.DefaultConfig do
       "shadow-color": %{shadow: ConfigUtils.colors()},
 
       # https://tailwindcss.com/docs/opacity
-      opacity: %{opacity: [{TailwindMerge.Validate, :is_integer?}]},
+      opacity: %{opacity: [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/mix-blend-mode
       "mix-blend": %{"mix-blend": ConfigUtils.blend_modes()},
@@ -721,24 +722,24 @@ defmodule TailwindMerge.DefaultConfig do
         blur: [
           "",
           "none",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_length}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_length}
         ]
       },
 
       # https://tailwindcss.com/docs/brightness
-      brightness: %{brightness: [{TailwindMerge.Validate, :is_integer?}]},
+      brightness: %{brightness: [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/contrast
-      contrast: %{contrast: [{TailwindMerge.Validate, :is_integer?}]},
+      contrast: %{contrast: [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/drop-shadow
       "drop-shadow": %{
         "drop-shadow": [
           "",
           "none",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_value}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_value}
         ]
       },
 
@@ -746,13 +747,13 @@ defmodule TailwindMerge.DefaultConfig do
       grayscale: %{grayscale: ConfigUtils.zero_and_empty()},
 
       # https://tailwindcss.com/docs/hue-rotate
-      "hue-rotate": %{"hue-rotate": [{TailwindMerge.Validate, :is_integer?}]},
+      "hue-rotate": %{"hue-rotate": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/invert
       invert: %{invert: ConfigUtils.zero_and_empty()},
 
       # https://tailwindcss.com/docs/saturate
-      saturate: %{saturate: [{TailwindMerge.Validate, :is_integer?}]},
+      saturate: %{saturate: [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/sepia
       sepia: %{sepia: ConfigUtils.zero_and_empty()},
@@ -765,31 +766,31 @@ defmodule TailwindMerge.DefaultConfig do
         "backdrop-blur": [
           "",
           "none",
-          {TailwindMerge.Validate, :is_tshirt_value},
-          {TailwindMerge.Validate, :is_arbitrary_value}
+          {Validate, :is_tshirt_value},
+          {Validate, :is_arbitrary_value}
         ]
       },
 
       # https://tailwindcss.com/docs/backdrop-brightness
-      "backdrop-brightness": %{"backdrop-brightness": [{TailwindMerge.Validate, :is_integer?}]},
+      "backdrop-brightness": %{"backdrop-brightness": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/backdrop-contrast
-      "backdrop-contrast": %{"backdrop-contrast": [{TailwindMerge.Validate, :is_integer?}]},
+      "backdrop-contrast": %{"backdrop-contrast": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/backdrop-grayscale
       "backdrop-grayscale": %{"backdrop-grayscale": ConfigUtils.zero_and_empty()},
 
       # https://tailwindcss.com/docs/backdrop-hue-rotate
-      "backdrop-hue-rotate": %{"backdrop-hue-rotate": [{TailwindMerge.Validate, :is_integer?}]},
+      "backdrop-hue-rotate": %{"backdrop-hue-rotate": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/backdrop-invert
       "backdrop-invert": %{"backdrop-invert": ConfigUtils.zero_and_empty()},
 
       # https://tailwindcss.com/docs/backdrop-opacity
-      "backdrop-opacity": %{"backdrop-opacity": [{TailwindMerge.Validate, :is_integer?}]},
+      "backdrop-opacity": %{"backdrop-opacity": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/backdrop-saturate
-      "backdrop-saturate": %{"backdrop-saturate": [{TailwindMerge.Validate, :is_integer?}]},
+      "backdrop-saturate": %{"backdrop-saturate": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/backdrop-sepia
       "backdrop-sepia": %{"backdrop-sepia": ConfigUtils.zero_and_empty()},
@@ -798,13 +799,13 @@ defmodule TailwindMerge.DefaultConfig do
       "border-collapse": %{border: ["collapse", "separate"]},
 
       # https://tailwindcss.com/docs/border-spacing
-      "border-spacing": %{"border-spacing": [{TailwindMerge.Validate, :is_length}]},
+      "border-spacing": %{"border-spacing": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-spacing
-      "border-spacing-x": %{"border-spacing-x": [{TailwindMerge.Validate, :is_length}]},
+      "border-spacing-x": %{"border-spacing-x": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/border-spacing
-      "border-spacing-y": %{"border-spacing-y": [{TailwindMerge.Validate, :is_length}]},
+      "border-spacing-y": %{"border-spacing-y": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/table-layout
       "table-layout": %{table: ["auto", "fixed"]},
@@ -819,20 +820,20 @@ defmodule TailwindMerge.DefaultConfig do
           "opacity",
           "shadow",
           "transform",
-          {TailwindMerge.Validate, :is_arbitrary_value}
+          {Validate, :is_arbitrary_value}
         ]
       },
 
       # https://tailwindcss.com/docs/transition-duration
-      duration: %{duration: [{TailwindMerge.Validate, :is_integer?}]},
+      duration: %{duration: [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/transition-timing-function
       ease: %{
-        ease: ["linear", "in", "out", "in-out", {TailwindMerge.Validate, :is_arbitrary_value}]
+        ease: ["linear", "in", "out", "in-out", {Validate, :is_arbitrary_value}]
       },
 
       # https://tailwindcss.com/docs/transition-delay
-      delay: %{delay: [{TailwindMerge.Validate, :is_integer?}]},
+      delay: %{delay: [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/animation
       animate: %{
@@ -842,7 +843,7 @@ defmodule TailwindMerge.DefaultConfig do
           "ping",
           "pulse",
           "bounce",
-          {TailwindMerge.Validate, :is_arbitrary_value}
+          {Validate, :is_arbitrary_value}
         ]
       },
 
@@ -850,41 +851,41 @@ defmodule TailwindMerge.DefaultConfig do
       transform: %{transform: ["", "gpu", "none"]},
 
       # https://tailwindcss.com/docs/scale
-      scale: %{scale: [{TailwindMerge.Validate, :is_integer?}]},
+      scale: %{scale: [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/scale
-      "scale-x": %{"scale-x": [{TailwindMerge.Validate, :is_integer?}]},
+      "scale-x": %{"scale-x": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/scale
-      "scale-y": %{"scale-y": [{TailwindMerge.Validate, :is_integer?}]},
+      "scale-y": %{"scale-y": [{Validate, :is_integer?}]},
 
       # https://tailwindcss.com/docs/rotate
       rotate: %{
         rotate: [
-          {TailwindMerge.Validate, :is_integer?},
-          {TailwindMerge.Validate, :is_arbitrary_value}
+          {Validate, :is_integer?},
+          {Validate, :is_arbitrary_value}
         ]
       },
 
       # https://tailwindcss.com/docs/translate
-      "translate-x": %{"translate-x": [{TailwindMerge.Validate, :is_length}]},
+      "translate-x": %{"translate-x": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/translate
-      "translate-y": %{"translate-y": [{TailwindMerge.Validate, :is_length}]},
+      "translate-y": %{"translate-y": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/skew
       "skew-x": %{
         "skew-x": [
-          {TailwindMerge.Validate, :is_integer?},
-          {TailwindMerge.Validate, :is_arbitrary_value}
+          {Validate, :is_integer?},
+          {Validate, :is_arbitrary_value}
         ]
       },
 
       # https://tailwindcss.com/docs/skew
       "skew-y": %{
         "skew-y": [
-          {TailwindMerge.Validate, :is_integer?},
-          {TailwindMerge.Validate, :is_arbitrary_value}
+          {Validate, :is_integer?},
+          {Validate, :is_arbitrary_value}
         ]
       },
 
@@ -900,7 +901,7 @@ defmodule TailwindMerge.DefaultConfig do
           "bottom-left",
           "left",
           "top-left",
-          {TailwindMerge.Validate, :is_arbitrary_value}
+          {Validate, :is_arbitrary_value}
         ]
       },
 
@@ -949,7 +950,7 @@ defmodule TailwindMerge.DefaultConfig do
           "nwse-resize",
           "zoom-in",
           "zoom-out",
-          {TailwindMerge.Validate, :is_arbitrary_value}
+          {Validate, :is_arbitrary_value}
         ]
       },
 
@@ -966,46 +967,46 @@ defmodule TailwindMerge.DefaultConfig do
       "scroll-behavior": %{scroll: ["auto", "smooth"]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-m": %{"scroll-m": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-m": %{"scroll-m": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-mx": %{"scroll-mx": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-mx": %{"scroll-mx": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-my": %{"scroll-my": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-my": %{"scroll-my": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-mt": %{"scroll-mt": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-mt": %{"scroll-mt": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-mr": %{"scroll-mr": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-mr": %{"scroll-mr": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-mb": %{"scroll-mb": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-mb": %{"scroll-mb": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-margin
-      "scroll-ml": %{"scroll-ml": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-ml": %{"scroll-ml": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-p": %{"scroll-p": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-p": %{"scroll-p": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-px": %{"scroll-px": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-px": %{"scroll-px": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-py": %{"scroll-py": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-py": %{"scroll-py": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-pt": %{"scroll-pt": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-pt": %{"scroll-pt": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-pr": %{"scroll-pr": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-pr": %{"scroll-pr": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-pb": %{"scroll-pb": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-pb": %{"scroll-pb": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-padding
-      "scroll-pl": %{"scroll-pl": [{TailwindMerge.Validate, :is_length}]},
+      "scroll-pl": %{"scroll-pl": [{Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/scroll-snap-align
       "snap-align": %{snap: ~w(start end center align-none)},
@@ -1040,7 +1041,7 @@ defmodule TailwindMerge.DefaultConfig do
           "scroll",
           "contents",
           "transform",
-          {TailwindMerge.Validate, :is_arbitrary_value}
+          {Validate, :is_arbitrary_value}
         ]
       },
 
@@ -1050,8 +1051,8 @@ defmodule TailwindMerge.DefaultConfig do
       # https://tailwindcss.com/docs/stroke-width
       "stroke-w": %{
         stroke: [
-          {TailwindMerge.Validate, :is_length},
-          {TailwindMerge.Validate, :is_arbitrary_number}
+          {Validate, :is_length},
+          {Validate, :is_arbitrary_number}
         ]
       },
 

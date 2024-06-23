@@ -45,7 +45,8 @@ defmodule TailwindMergeTest do
   end
 
   test "break-before" do
-    assert merge("break-before-all bg-red-500 break-before-page") == "bg-red-500 break-before-page"
+    assert merge("break-before-all bg-red-500 break-before-page") ==
+             "bg-red-500 break-before-page"
   end
 
   test "break-inside" do
@@ -109,11 +110,13 @@ defmodule TailwindMergeTest do
   end
 
   test "overscroll-x" do
-    assert merge("overscroll-x-none bg-red-500 overscroll-x-auto") == "bg-red-500 overscroll-x-auto"
+    assert merge("overscroll-x-none bg-red-500 overscroll-x-auto") ==
+             "bg-red-500 overscroll-x-auto"
   end
 
   test "overscroll-y" do
-    assert merge("overscroll-y-none bg-red-500 overscroll-y-auto") == "bg-red-500 overscroll-y-auto"
+    assert merge("overscroll-y-none bg-red-500 overscroll-y-auto") ==
+             "bg-red-500 overscroll-y-auto"
   end
 
   test "inset" do
@@ -241,7 +244,9 @@ defmodule TailwindMergeTest do
   end
 
   test "justify-items" do
-    assert merge("justify-items-start justify-items-end justify-items-stretch justify-items-center") ==
+    assert merge(
+             "justify-items-start justify-items-end justify-items-stretch justify-items-center"
+           ) ==
              "justify-items-center"
   end
 
@@ -422,7 +427,8 @@ defmodule TailwindMergeTest do
   end
 
   test "text-alignment" do
-    assert merge("text-left text-center text-right text-justify text-start text-end") == "text-end"
+    assert merge("text-left text-center text-right text-justify text-start text-end") ==
+             "text-end"
   end
 
   test "text-color" do
@@ -515,7 +521,8 @@ defmodule TailwindMergeTest do
   end
 
   test "bg-size" do
-    assert merge("bg-auto bg-cover bg-contain bg-[length:200px_100px]") == "bg-[length:200px_100px]"
+    assert merge("bg-auto bg-cover bg-contain bg-[length:200px_100px]") ==
+             "bg-[length:200px_100px]"
   end
 
   test "bg-image" do
@@ -539,7 +546,8 @@ defmodule TailwindMergeTest do
   end
 
   test "gradient-via" do
-    assert merge("via-inherit via-current via-black via-red-50 via-indigo-500") == "via-indigo-500"
+    assert merge("via-inherit via-current via-black via-red-50 via-indigo-500") ==
+             "via-indigo-500"
   end
 
   test "gradient-to" do
@@ -552,22 +560,30 @@ defmodule TailwindMergeTest do
   end
 
   test "rounded-t" do
-    assert merge("rounded-t rounded-t-none rounded-t-full rounded-t-xl rounded-t-sm rounded-t-[3px]") ==
+    assert merge(
+             "rounded-t rounded-t-none rounded-t-full rounded-t-xl rounded-t-sm rounded-t-[3px]"
+           ) ==
              "rounded-t-[3px]"
   end
 
   test "rounded-r" do
-    assert merge("rounded-r rounded-r-none rounded-r-full rounded-r-xl rounded-r-sm rounded-r-[3px]") ==
+    assert merge(
+             "rounded-r rounded-r-none rounded-r-full rounded-r-xl rounded-r-sm rounded-r-[3px]"
+           ) ==
              "rounded-r-[3px]"
   end
 
   test "rounded-b" do
-    assert merge("rounded-b rounded-b-none rounded-b-full rounded-b-xl rounded-b-sm rounded-b-[3px]") ==
+    assert merge(
+             "rounded-b rounded-b-none rounded-b-full rounded-b-xl rounded-b-sm rounded-b-[3px]"
+           ) ==
              "rounded-b-[3px]"
   end
 
   test "rounded-l" do
-    assert merge("rounded-l rounded-l-none rounded-l-full rounded-l-xl rounded-l-sm rounded-l-[3px]") ==
+    assert merge(
+             "rounded-l rounded-l-none rounded-l-full rounded-l-xl rounded-l-sm rounded-l-[3px]"
+           ) ==
              "rounded-l-[3px]"
   end
 
@@ -628,7 +644,9 @@ defmodule TailwindMergeTest do
   end
 
   test "border-style" do
-    assert merge("border-solid border-hidden border-dashed border-dotted border-double border-none") ==
+    assert merge(
+             "border-solid border-hidden border-dashed border-dotted border-double border-none"
+           ) ==
              "border-none"
   end
 
@@ -690,7 +708,9 @@ defmodule TailwindMergeTest do
   end
 
   test "outline-style" do
-    assert merge("outline outline-solid outline-dashed outline-dotted outline-double outline-none") ==
+    assert merge(
+             "outline outline-solid outline-dashed outline-dotted outline-double outline-none"
+           ) ==
              "outline-none"
   end
 
@@ -715,7 +735,8 @@ defmodule TailwindMergeTest do
   end
 
   test "ring-color" do
-    assert merge("ring-blue-300 ring-red-300 bg-red-100 ring-red-200") == "bg-red-100 ring-red-200"
+    assert merge("ring-blue-300 ring-red-300 bg-red-100 ring-red-200") ==
+             "bg-red-100 ring-red-200"
   end
 
   test "ring-opacity" do
