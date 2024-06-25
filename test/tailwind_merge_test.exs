@@ -246,9 +246,7 @@ defmodule TailwindMergeTest do
   end
 
   test "justify-items" do
-    assert tw(
-             "justify-items-start justify-items-end justify-items-stretch justify-items-center"
-           ) ==
+    assert tw("justify-items-start justify-items-end justify-items-stretch justify-items-center") ==
              "justify-items-center"
   end
 
@@ -550,30 +548,22 @@ defmodule TailwindMergeTest do
   end
 
   test "rounded-t" do
-    assert tw(
-             "rounded-t rounded-t-none rounded-t-full rounded-t-xl rounded-t-sm rounded-t-[3px]"
-           ) ==
+    assert tw("rounded-t rounded-t-none rounded-t-full rounded-t-xl rounded-t-sm rounded-t-[3px]") ==
              "rounded-t-[3px]"
   end
 
   test "rounded-r" do
-    assert tw(
-             "rounded-r rounded-r-none rounded-r-full rounded-r-xl rounded-r-sm rounded-r-[3px]"
-           ) ==
+    assert tw("rounded-r rounded-r-none rounded-r-full rounded-r-xl rounded-r-sm rounded-r-[3px]") ==
              "rounded-r-[3px]"
   end
 
   test "rounded-b" do
-    assert tw(
-             "rounded-b rounded-b-none rounded-b-full rounded-b-xl rounded-b-sm rounded-b-[3px]"
-           ) ==
+    assert tw("rounded-b rounded-b-none rounded-b-full rounded-b-xl rounded-b-sm rounded-b-[3px]") ==
              "rounded-b-[3px]"
   end
 
   test "rounded-l" do
-    assert tw(
-             "rounded-l rounded-l-none rounded-l-full rounded-l-xl rounded-l-sm rounded-l-[3px]"
-           ) ==
+    assert tw("rounded-l rounded-l-none rounded-l-full rounded-l-xl rounded-l-sm rounded-l-[3px]") ==
              "rounded-l-[3px]"
   end
 
@@ -630,9 +620,7 @@ defmodule TailwindMergeTest do
   end
 
   test "border-style" do
-    assert tw(
-             "border-solid border-hidden border-dashed border-dotted border-double border-none"
-           ) ==
+    assert tw("border-solid border-hidden border-dashed border-dotted border-double border-none") ==
              "border-none"
   end
 

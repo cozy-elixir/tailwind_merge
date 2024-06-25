@@ -1,4 +1,8 @@
 defmodule TailwindMerge.Validator do
+  @moduledoc """
+  Provides built-in validators.
+  """
+
   @regex_arbitrary ~r/^\[(.+)\]$/
   def arbitrary?(v) do
     Regex.match?(@regex_arbitrary, v)

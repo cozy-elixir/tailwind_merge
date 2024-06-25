@@ -1,3 +1,4 @@
+# credo:disable-for-this-file
 defmodule TailwindMergeJSTest do
   @moduledoc """
   These tests comes from tailwind-merge in JavaScript community.

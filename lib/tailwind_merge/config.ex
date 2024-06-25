@@ -1,4 +1,8 @@
 defmodule TailwindMerge.Config do
+  @moduledoc """
+  Provides config.
+  """
+
   alias TailwindMerge.Validator
 
   defstruct [:class_groups, :conflicting_class_groups]
