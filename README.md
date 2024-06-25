@@ -1,5 +1,8 @@
 # TailwindMerge
 
+[![CI](https://github.com/cozy-elixir/tailwind_merge/actions/workflows/ci.yml/badge.svg)](https://github.com/cozy-elixir/tailwind_merge/actions/workflows/ci.yml)
+[![Hex.pm](https://img.shields.io/hexpm/v/tailwind_merge.svg)](https://hex.pm/packages/tailwind_merge)
+
 Utility function to efficiently merge Tailwind CSS classes in Elixir without style conflicts.
 
 > Inspired by [tailwind-merge](https://github.com/dcastil/tailwind-merge).
