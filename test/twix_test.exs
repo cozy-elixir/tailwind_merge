@@ -1,6 +1,6 @@
-defmodule TailwindMergeTest do
+defmodule TwixTest do
   @moduledoc """
-  These tests comes from Twix.
+  These tests comes from Twix, which helps me to not break things when refactoring.
   """
 
   use ExUnit.Case
