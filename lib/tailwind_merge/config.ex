@@ -7,10 +7,24 @@ defmodule TailwindMerge.Config do
 
   defstruct [:class_groups, :conflicting_class_groups]
 
-  def default do
+  def new(opts \\ []) do
+    class_groups =
+      Keyword.get_lazy(
+        opts,
+        :class_groups,
+        fn -> class_groups([]) end
+      )
+
+    conflicting_class_groups =
+      Keyword.get_lazy(
+        opts,
+        :conflicting_class_groups,
+        fn -> conflicting_class_groups() end
+      )
+
     %__MODULE__{
-      class_groups: class_groups([]),
-      conflicting_class_groups: conflicting_class_groups()
+      class_groups: class_groups,
+      conflicting_class_groups: conflicting_class_groups
     }
   end
 

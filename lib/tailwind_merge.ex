@@ -1,6 +1,42 @@
 defmodule TailwindMerge do
   @moduledoc """
-  Provides utility function to efficiently merge Tailwind CSS classes in Elixir without style conflicts.
+  Provides utility function to efficiently merge Tailwind CSS classes in Elixir
+  without style conflicts.
+
+  ## Usage
+
+  To use this package, define a helper module in your project:
+
+      defmodule DemoWeb.ClassHelper do
+        use TailwindMerge
+      end
+
+  Then, `DemoWeb.ClassHelper.tw/1` will be available to use.
+
+  ## Customization
+
+  To customize the default behaviour, passing options to the `use` call:
+
+     * `:config` - specify the config to use.
+     * `:as` - specify the name of generated function.
+
+  Let's customize colors to use:
+
+      defmodule DemoWeb.ClassHelper do
+        existing_colors = TailwindMerge.Config.colors()
+        new_colors = existing_colors ++ ["primary", "secondary"]
+        new_class_groups = TailwindMerge.Config.class_groups(colors: new_colors)
+
+        use TailwindMerge,
+          config: TailwindMerge.Config.new(class_groups: new_class_groups),
+          as: :merge_class
+      end
+
+  Then, call it:
+
+      DemoWeb.ClassHelper.merge_class("text-red-300 text-primary")
+      # "text-primary"
+
   """
 
   alias TailwindMerge.Config
@@ -8,7 +44,7 @@ defmodule TailwindMerge do
   alias TailwindMerge.ClassGroup
 
   defmacro __using__(opts) do
-    config = Keyword.get_lazy(opts, :config, fn -> Macro.escape(Config.default()) end)
+    config = Keyword.get_lazy(opts, :config, fn -> Macro.escape(Config.new()) end)
     as = Keyword.get(opts, :as, :tw)
 
     class_group_module = Module.concat(__CALLER__.module, "TailwindMerge.ClassGroup")
