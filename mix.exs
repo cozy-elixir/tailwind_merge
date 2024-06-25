@@ -10,6 +10,7 @@ defmodule TailwindMerge.MixProject do
       app: :tailwind_merge,
       version: @version,
       elixir: "~> 1.15",
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: @description,
@@ -25,6 +26,9 @@ defmodule TailwindMerge.MixProject do
   def application() do
     []
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp deps() do
     [

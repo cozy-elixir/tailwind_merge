@@ -1,34 +1,44 @@
 defmodule TailwindMerge do
-  alias TailwindMerge.DefaultConfig
-  alias TailwindMerge.Mapping
-
-  @doc """
-  Merges Tailwind CSS classes.
-
-  ## The mechanism
-
-  When merge two clasess, this function will first get the groups of the two
-  classes. If they are in the same group, the last one will be retained, the
-  previous one will be dropped.
-
-  It will also consider the variants (like `hover`) and, once again, the last
-  one will be retained, the previous one will be dropped.
+  @moduledoc """
+  Provides utility function to efficiently merge Tailwind CSS classes in Elixir without style conflicts.
   """
-  def merge(classes) when is_list(classes) do
-    classes
-    |> Enum.join(" ")
-    |> merge()
+
+  alias TailwindMerge.Config
+  alias TailwindMerge.Class
+  alias TailwindMerge.ClassGroup
+
+  defmacro __using__(opts) do
+    config = Keyword.get_lazy(opts, :config, fn -> Macro.escape(Config.default()) end)
+    as = Keyword.get(opts, :as, :tw)
+
+    class_group_module = Module.concat(__CALLER__.module, "TailwindMerge.ClassGroup")
+
+    quote do
+      defmodule unquote(class_group_module) do
+        @config unquote(config)
+        @before_compile ClassGroup
+      end
+
+      @doc """
+      Merges Tailwind CSS classes.
+      """
+      @spec unquote(as)(binary() | list()) :: binary()
+      def unquote(as)(classes), do: TailwindMerge.merge(classes, unquote(class_group_module))
+    end
   end
 
-  def merge(classes) when is_binary(classes) do
+  @doc false
+  def merge(classes, class_group_module) when is_list(classes) do
+    classes = Enum.join(classes, " ")
+    merge(classes, class_group_module)
+  end
+
+  def merge(classes, class_group_module) when is_binary(classes) do
     classes
     |> String.trim()
     |> split_classes()
-    |> Enum.map(&Mapping.new(&1))
-    |> Enum.reverse()
-    |> Enum.uniq_by(fn %Mapping{modifiers: modifiers, group: group} -> {modifiers, group} end)
-    |> handle_conflicts()
-    |> Enum.reverse()
+    |> Enum.map(&Class.new(&1, class_group_module))
+    |> clean_classes(class_group_module)
     |> Enum.map_join(" ", &to_string/1)
   end
 
@@ -36,39 +46,34 @@ defmodule TailwindMerge do
     Regex.split(~r/\s+/, classes)
   end
 
-  defp handle_conflicts(mappings) do
-    mappings
-    |> Enum.reduce(
-      %{classes: [], conflicts: []},
-      fn %Mapping{modifiers: modifiers, group: group} =
-           data,
-         acc ->
-        class = Enum.join(modifiers ++ [group], ":")
+  defp clean_classes(classes, class_group_module) do
+    classes
+    |> Enum.reverse()
+    |> handle_related_classes()
+    |> handle_conflicting_classes(class_group_module)
+    |> Enum.reverse()
+  end
 
-        case Enum.member?(acc.conflicts, class) do
-          true ->
-            acc
+  defp handle_related_classes(classes) do
+    Enum.uniq_by(classes, fn %Class{} = class ->
+      {class.group, class.modifiers}
+    end)
+  end
 
-          false ->
-            conflicts =
-              group
-              |> get_conflicting_class_group_ids()
+  defp handle_conflicting_classes(classes, class_group_module) do
+    classes
+    |> Enum.reduce({[], []}, fn %Class{} = class, {classes, conflicts} ->
+      conflict = {class.group, class.modifiers}
 
-            %{acc | conflicts: conflicts, classes: acc.classes ++ [data]}
-        end
+      if Enum.member?(conflicts, conflict) do
+        {classes, conflicts}
+      else
+        conflicting_groups = apply(class_group_module, :get_conflicting_groups, [class.group])
+        new_conflicts = Enum.map(conflicting_groups, &{&1, class.modifiers})
+        {[class | classes], conflicts ++ new_conflicts}
       end
-    )
-    |> Map.get(:classes)
-  end
-
-  defp get_conflicting_class_group_ids(class) when is_binary(class) do
-    String.to_existing_atom(class)
-    |> get_conflicting_class_group_ids()
-  rescue
-    ArgumentError -> [class]
-  end
-
-  defp get_conflicting_class_group_ids(class) do
-    DefaultConfig.conflicting_class_groups()[class] || []
+    end)
+    |> elem(0)
+    |> Enum.reverse()
   end
 end
